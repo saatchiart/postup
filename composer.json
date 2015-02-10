@@ -1,0 +1,24 @@
+{
+    "name": "demand/postup",
+    "description": "SDK for PostUp email list management",
+    "homepage": "http://github.com/saatchiart/postup",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Shindle",
+            "email": "mike@saatchiart.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Demand\\Postup\\": "src/Postup/",
+            "Demand\\Soap\\": "src/Soap/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "ext-soap": "*"
+    }
+}
