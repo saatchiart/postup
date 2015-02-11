@@ -72,6 +72,28 @@ class ApiClient
         return $this->doSoapCall('getRecipientByExternalID',$externalID);
     }
 
+    /* subscribe/unsubscribe to lists */
+
+    /**
+     *
+     * @param int $listID
+     * @param int $recipID
+     * @param bool $confirmed
+     * @param string $sourceID
+     * @param int $mailingID
+     */
+    public function subscribeToList($listID,$recipID,$confirmed = false,$sourceID = '',$mailingID = 0)
+    {
+        $data = array(
+            'listID' => $listID,
+            'recipID'=> $recipID,
+            'confirmed' => $confirmed,
+            'sourceID' => $sourceID,
+            'mailingID' => $mailingID
+        );
+        return $this->doSoapCall('subscribeToList',$data);
+    }
+
     /**
      * Execute the soapMethod and record result
      *
@@ -83,9 +105,16 @@ class ApiClient
     protected function doSoapCall($method,$params,$errorResponse = null)
     {
         try {
-            $result = $this->adapter->$method($params);
+            if (is_array($params)) {
+                $result = call_user_func_array(array($this->adapter,$method),$params);
+           } else {
+                $result = call_user_func(array($this->adapter, $method), $params);
+            }
+//            $result = $this->adapter->$method($params);
             $this->setResult($result);
+            $this->resetSoapError();
         } catch (\SoapFault $sf) {
+            $this->setResult(null);
             $this->setSoapError($sf);
         }
         return ($this->isSuccess()) ? $this->getResult() : $errorResponse;
@@ -124,6 +153,14 @@ class ApiClient
     protected function setResult($result)
     {
         $this->result = $result;
+    }
+
+    /**
+     * Reset the soap error.
+     */
+    protected function resetSoapError()
+    {
+        $this->soapError = null;
     }
 
     /**
