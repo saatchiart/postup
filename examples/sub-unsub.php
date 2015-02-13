@@ -5,7 +5,7 @@ require __DIR__ . '/bootstrap.php';
 
 /* create recip from array */
 $user = array(
-    'address' => 'batman@saatchionline.com',
+    'address' => 'batma@saatchionline.com',
     'externalID' => 3,
     'demographics' => array(
         'FirstName=Bruce',
@@ -17,8 +17,8 @@ $user = array(
 $recip = $client->getRecipientByAddress($user['address']);
 if (!$client->isSuccess()) {
     // assume error comes from not existing - so we need to create
-//    log_call($client);
-//    exit(1);
+    log_call($client);
+    exit(1);
 }
 
 if (!$recip) {
