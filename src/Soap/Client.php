@@ -2,6 +2,14 @@
 
 namespace Demand\Soap;
 
+/**
+ *
+ * Class Client
+ *
+ * Add a pre-processing hook into \SoapClient
+ *
+ * @package Demand\Soap
+ */
 class Client extends \SoapClient
 {
     /**

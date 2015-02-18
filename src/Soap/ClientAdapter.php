@@ -3,7 +3,7 @@
 namespace Demand\Soap;
 
 /**
- * A generic adapter around Zend_Soap_Client to make it easier to send SOAP api requests
+ * A generic adapter around SoapClient to make it easier to send SOAP api requests
  * and parse responses.
  *
  * Class ClientAdapter
