@@ -95,6 +95,22 @@ class ApiClient
     }
 
     /**
+     * @param $listID
+     * @param $recipID
+     * @param int $mailingID
+     * @return mixed|null
+     */
+    public function unsubscribeFromList($listID, $recipID, $mailingID = 0)
+    {
+        $data = array(
+            'listID' => $listID,
+            'recipID' => $recipID,
+            'mailingID' => $mailingID
+        );
+        return $this->doSoapCall('unsubscribeFromList',$data);
+    }
+
+    /**
      * Execute the soapMethod and record result
      *
      * @param string $method
