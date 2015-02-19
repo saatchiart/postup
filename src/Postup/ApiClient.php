@@ -95,6 +95,9 @@ class ApiClient
     }
 
     /**
+     * SoapFunction returns a void. Check isSuccess() if unsubscribe
+     * was successful.
+     *
      * @param $listID
      * @param $recipID
      * @param int $mailingID
