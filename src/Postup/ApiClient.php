@@ -114,6 +114,24 @@ class ApiClient
     }
 
     /**
+     * Returns 'Ok' if message was sent or a SoapFault otherwise.
+     * 
+     * @param int $_sendTemplateID
+     * @param string $_recipientEmail
+     * @param array $_nameValuePairs
+     * @return string
+     */
+    public function sendMessageFromTemplate($sendTemplateID,$recipientEmail,$nameValuePairs = array())
+    {
+        $data = array(
+            'sendTemplateID' => $sendTemplateID,
+            'recipientEmail' => $recipientEmail,
+            'nameValuePairs' => $nameValuePairs
+        );
+        return $this->doSoapCall('sendMessageFromTemplate',$data);
+    }
+
+    /**
      * Execute the soapMethod and record result
      *
      * @param string $method
