@@ -1,5 +1,6 @@
 {
     "name": "demand/postup",
+    "version": "0.9.0",
     "description": "SDK for PostUp email list management",
     "homepage": "http://github.com/saatchiart/postup",
     "type": "library",
