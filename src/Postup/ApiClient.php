@@ -81,17 +81,26 @@ class ApiClient
      * @param bool $confirmed
      * @param string $sourceID
      * @param int $mailingID
+     * @param string $source (default: '') where this came from. Should be
+     * something like "footer" or "modal"
      */
-    public function subscribeToList($listID,$recipID,$confirmed = false,$sourceID = '',$mailingID = 0)
-    {
+    public function subscribeToList(
+        $listID,
+        $recipID,
+        $confirmed = false,
+        $sourceID = '',
+        $mailingID = 0,
+        $source = ''
+    ) {
         $data = array(
             'listID' => $listID,
             'recipID'=> $recipID,
             'confirmed' => $confirmed,
             'sourceID' => $sourceID,
-            'mailingID' => $mailingID
+            'mailingID' => $mailingID,
+            'sourceDescription' => $source
         );
-        return $this->doSoapCall('subscribeToList',$data);
+        return $this->doSoapCall('subscribeToList', $data);
     }
 
     /**
@@ -115,7 +124,7 @@ class ApiClient
 
     /**
      * Returns 'Ok' if message was sent or a SoapFault otherwise.
-     * 
+     *
      * @param int $_sendTemplateID
      * @param string $_recipientEmail
      * @param array $_nameValuePairs
